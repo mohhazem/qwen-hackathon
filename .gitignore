@@ -1,0 +1,17 @@
+# IDE
+.idea/
+.vscode/
+
+# Python
+backend/.venv/
+__pycache__/
+*.pyc
+
+# Node / Nuxt
+node_modules/
+frontend/.nuxt/
+frontend/.output/
+frontend/dist/
+
+# Env
+.env
