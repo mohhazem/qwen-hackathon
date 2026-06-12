@@ -1,0 +1,88 @@
+/* ── Agent Society design system ─────────────────────────────────────────
+   "A secret society run by machines": warm near-black ink, bone type,
+   gold-leaf accents. Cinzel (engraved display) + IBM Plex Mono (system voice).
+─────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --ink: #0c0a07;
+  --ink-raised: #131009;
+  --ink-deep: #080604;
+  --edge: #2b2415;
+  --edge-soft: #1d1810;
+
+  --bone: #e9e1cc;
+  --bone-dim: #9d9279;
+  --bone-faint: #6e6650;
+
+  --gold: #c9a227;
+  --gold-bright: #ecc95e;
+  --crimson: #a32638;
+  --moon: #b8c8e0;
+  --amber: #d29a3a;
+
+  /* themed per game via .viewer--* / .poster--* */
+  --accent: var(--gold);
+
+  --font-display: 'Cinzel', 'Georgia', serif;
+  --font-mono: 'IBM Plex Mono', 'Consolas', monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #__nuxt { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--bone);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--gold); color: var(--ink); }
+
+* { scrollbar-width: thin; scrollbar-color: var(--edge) transparent; }
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-thumb { background: var(--edge); border-radius: 4px; }
+*::-webkit-scrollbar-track { background: transparent; }
+
+a { color: inherit; }
+
+/* film grain over everything */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  pointer-events: none;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* shared motion */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes fade-down {
+  from { opacity: 0; transform: translateY(-14px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.3; }
+}
+@keyframes drift {
+  from { transform: translateX(-5%); }
+  to   { transform: translateX(5%); }
+}
+
+/* "CONVENING AGENTS…" animated ellipsis */
+@keyframes dots {
+  0%  { content: ''; }
+  25% { content: '.'; }
+  50% { content: '..'; }
+  75% { content: '...'; }
+}
+.dots::after { content: ''; animation: dots 1.2s linear infinite; }
